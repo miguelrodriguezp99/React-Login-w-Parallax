@@ -7,8 +7,8 @@ const MainSite =({changeLoggedIn}) => {
     return (
         <div>
           <div className="all">
-            <div className="lefter">
-              <div className="text">Loading...</div>
+            <div onClick={() => navigate('/projects')} className="lefter">
+              <div className="text">Projects</div>
             </div>
             <div onClick={() => navigate('/tictactoe')}className="left">
               <div className="text">Tic Tac Toe</div>

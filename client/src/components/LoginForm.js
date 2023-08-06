@@ -13,11 +13,15 @@ function LoginForm({changeLoggedIn}){
 
     const [userNameReg, setUserNameReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
+    
+
+
 
     const navigate = useNavigate();
 
     useEffect(() => {
       const bearer = localStorage.getItem('jwt')
+      
 
       if(bearer !== null){
         navigate('/main')
@@ -71,7 +75,7 @@ function LoginForm({changeLoggedIn}){
     }
   
 return (
-      <div>
+      <div className="login-form">
         <title>Slide Navbar</title>
         <link rel="stylesheet" type="text/css" href="slide navbar style.css" />
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet" />
