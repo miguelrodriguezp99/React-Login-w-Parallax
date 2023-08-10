@@ -5,76 +5,80 @@ import {useNavigate} from 'react-router-dom';
 
 function LoginForm({changeLoggedIn}){
 
-    //TODO Añadir LocalStorage
-    //En caso de que tengamos un Bearer valido en el localStorage entonces
-    //Hacemos un navigate directamente a /main
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+  //TODO Añadir LocalStorage
+  //En caso de que tengamos un Bearer valido en el localStorage entonces
+  //Hacemos un navigate directamente a /main
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
-    const [userNameReg, setUserNameReg] = useState('');
-    const [passwordReg, setPasswordReg] = useState('');
-    
-
-
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      const bearer = localStorage.getItem('jwt')
-      
-
-      if(bearer !== null){
-        navigate('/main')
-
-      }
-    }, [])
-    
-    
-    //const navigate = useNavigate();
+  const [userNameReg, setUserNameReg] = useState('');
+  const [passwordReg, setPasswordReg] = useState('');
   
-    //Logica submit login
-    const handleSubmit = async event => {
-      event.preventDefault();
-      
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: userName, password: password })
-      };
+  const navigate = useNavigate();
+
+
+  //Cargamos la clase del CSS del body. Tenemos que hacer esto para cada uno de los componentes que modifiquen el body
+  useEffect(() => {
+    document.body.classList.add('login-body')
+    return () => {
+      document.body.classList.remove('login-body')
+    }
+  }, [])
+
+  useEffect(() => {
+    const bearer = localStorage.getItem('jwt')
+    if(bearer !== null){
+      navigate('/main')
+
+    }
+  }, [])
   
-      const response = await fetch('./login', requestOptions)
   
-      if (response.status >= 300){
-        console.log("Error")
-      } else if (response.status === 200){
-        localStorage.setItem('jwt', `Bearer ${response.text()}`)
-        changeLoggedIn(true)
-        navigate('/main')
-      }
+  //const navigate = useNavigate();
+
+  //Logica submit login
+  const handleSubmit = async event => {
+    event.preventDefault();
+    
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: userName, password: password })
+    };
+
+    const response = await fetch('./login', requestOptions)
+
+    if (response.status >= 300){
+      console.log("Error")
+    } else if (response.status === 200){
+      localStorage.setItem('jwt', `Bearer ${response.text()}`)
+      changeLoggedIn(true)
+      navigate('/main')
+    }
+  }
+
+  //Logica submit register
+  const handleSubmitReg = async event => {
+    event.preventDefault();
+    const loginFor = document.getElementById("lg-clck")
+
+    const requestOptionsReg = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: userNameReg, password: passwordReg})
     }
 
-    //Logica submit register
-    const handleSubmitReg = async event => {
-      event.preventDefault();
-      const loginFor = document.getElementById("lg-clck")
+    const response = await fetch('./register', requestOptionsReg)
 
-      const requestOptionsReg = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: userNameReg, password: passwordReg})
-      }
-
-      const response = await fetch('./register', requestOptionsReg)
-
-      if (response.status >= 300){
-        console.log("Error")
-      } else if (response.status === 201){
-        localStorage.setItem('jwt', `Bearer ${response.text()}`)
-        loginFor.click()
-      }
+    if (response.status >= 300){
+      console.log("Error")
+    } else if (response.status === 201){
+      localStorage.setItem('jwt', `Bearer ${response.text()}`)
+      loginFor.click()
     }
+  }
   
-return (
+  return (
       <div className="login-form">
         <title>Slide Navbar</title>
         <link rel="stylesheet" type="text/css" href="slide navbar style.css" />

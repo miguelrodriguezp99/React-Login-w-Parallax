@@ -3,9 +3,13 @@ import './styles/login.css'
 import {Route, Routes, useLocation} from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
-import MainSite from './components/MainSite';
+import FuturisticMain from './components/menu/FuturisticMain';
 import TicTacToe from './components/TicTacToe';
 import Cards from './components/projects/Cards';
+import MainSite from './components/MainSite';
+import LoginSite from './components/LoginSite';
+import RegisterSite from './components/RegisterSite';
+
 
 
 function App() {
@@ -26,17 +30,20 @@ function App() {
   }
 
   return (
-    <>
+    
       <div className="container" >
           <Routes location={location} key={location.pathname}>
-            <Route index element={<LoginForm changeLoggedIn={changeLoggedIn}/>}/>
-            <Route path='/login' element={<LoginForm changeLoggedIn={changeLoggedIn}/>}/>
-            {<Route path="/main" element={<MainSite changeLoggedIn={changeLoggedIn}/>}/>}
+            <Route index element={<LoginSite changeLoggedIn={changeLoggedIn}/>}/>
+            <Route path='/login' element={<LoginSite changeLoggedIn={changeLoggedIn}/>}/>
+            <Route path='/register' element={<RegisterSite changeLoggedIn={changeLoggedIn}/>}/>
+            {<Route path="/main" element={<FuturisticMain changeLoggedIn={changeLoggedIn}/>}/>}
+            {<Route path="/mainsite" element={<MainSite changeLoggedIn={changeLoggedIn}/>} />}
             {loggedIn && <Route path="/projects" element={<Cards/>}/>}
             {loggedIn && <Route path="/tictactoe" element={<TicTacToe/>}/>}
+            
           </Routes>
       </div>
-    </>
+    
   )
 }
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import '../../styles/cards.css'
 import Footer from '../Footer'
-import ExitButton from '../ExitButton';
+
 
 function Cards(){
   
