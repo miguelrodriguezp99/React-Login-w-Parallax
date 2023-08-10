@@ -61,8 +61,8 @@ const LoginSite =({changeLoggedIn}) => {
             <PasswordInput id='password-input' func={setPassword}/>
             <br />
             <div className='lgn-btns'>
-              <LoginButton word={"Login"} username={userName}/>
-              <LoginButton word={"Register"} route={"register"} />
+              <LoginButton word={"Login"} className='lgn-btn'/>
+              <LoginButton word={"Register"} route={"register"} className='lgn-btn'/>
             </div>
         </div>
       </form>

@@ -33,4 +33,6 @@
 .lgn-btns {
   display: flex;
   justify-content: space-between;
+  font-size: 20px;
+  letter-spacing: 10px;
 }

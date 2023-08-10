@@ -60,6 +60,7 @@ function LoginForm({changeLoggedIn}){
   //Logica submit register
   const handleSubmitReg = async event => {
     event.preventDefault();
+    //loginFor es el label que hace click en el checkbox
     const loginFor = document.getElementById("lg-clck")
 
     const requestOptionsReg = {
@@ -74,6 +75,7 @@ function LoginForm({changeLoggedIn}){
       console.log("Error")
     } else if (response.status === 201){
       localStorage.setItem('jwt', `Bearer ${response.text()}`)
+      //Aqui hacemos click en el label para que se muestre el login
       loginFor.click()
     }
   }

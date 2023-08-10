@@ -1,5 +1,4 @@
 .lgn-btn {
-    font-size: 20px;
     color: #e1e1e1;
     font-family: inherit;
     font-weight: 00;
@@ -12,12 +11,18 @@
     transition-duration: 400ms;
     transition-property: color;
   }
-  
-.lgn-btn:focus,
-  .lgn-btn button:hover {
-    color: #5d686b;
-    
-  }
+
+
+.exit-button-div{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.exit-button {
+  font-size: 35px;
+  letter-spacing: 1px;
+  margin-top: 35px;
+}
   
  .lgn-btn:focus:after,
  button:hover:after {

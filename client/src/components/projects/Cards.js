@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import '../../styles/cards.css'
-import Footer from '../Footer'
+
 
 
 function Cards(){
@@ -172,7 +172,7 @@ function Cards(){
             </span>
             
         </div>
-        <Footer />
+
         
         </>
     );

@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router-dom';
 import React, {useEffect, useState} from 'react'
-import Menu from './Menu'
+import Menu from './menu/Menu'
 import ParallaxStars from './menu/ParallaxStars';
 
 

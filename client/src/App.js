@@ -9,6 +9,7 @@ import Cards from './components/projects/Cards';
 import MainSite from './components/MainSite';
 import LoginSite from './components/LoginSite';
 import RegisterSite from './components/RegisterSite';
+import Projects from './components/Projects';
 
 
 
@@ -36,6 +37,8 @@ function App() {
             <Route index element={<LoginSite changeLoggedIn={changeLoggedIn}/>}/>
             <Route path='/login' element={<LoginSite changeLoggedIn={changeLoggedIn}/>}/>
             <Route path='/register' element={<RegisterSite changeLoggedIn={changeLoggedIn}/>}/>
+            <Route path='/gallery' element={<Projects/>}/>
+            <Route path='/log' element={<LoginForm changeLoggedIn={changeLoggedIn}/>}/>
             {<Route path="/main" element={<FuturisticMain changeLoggedIn={changeLoggedIn}/>}/>}
             {<Route path="/mainsite" element={<MainSite changeLoggedIn={changeLoggedIn}/>} />}
             {loggedIn && <Route path="/projects" element={<Cards/>}/>}
