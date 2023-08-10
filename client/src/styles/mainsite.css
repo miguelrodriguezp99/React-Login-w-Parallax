@@ -14,6 +14,7 @@
 
 
 .all {
+  
   display: flex;
   perspective: 10px;
   transform: perspective(300px) rotateX(20deg);

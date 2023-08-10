@@ -8,6 +8,7 @@ const ParallaxStars =() => {
 
   //Añado la etiqueta html-menu al html para que no choque con las demás cosas. 
   useEffect(() => {
+    
     document.documentElement.classList.add('html-menu')
     return () => {
         document.documentElement.classList.remove('html-menu')

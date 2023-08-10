@@ -16,6 +16,7 @@
 .lgn-btn:focus,
   .lgn-btn button:hover {
     color: #5d686b;
+    
   }
   
  .lgn-btn:focus:after,
