@@ -1,52 +1,39 @@
 import '../styles/mainsite.css'
 import '../styles/login2.css'
 import {useNavigate} from 'react-router-dom';
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import ParallaxStars from './menu/ParallaxStars';
 import LoginInput from './inputs/LoginInput';
 import PasswordInput from './inputs/PasswordInput';
 import LoginButton from './buttons/LoginButton';
+import { useLoggedIn } from '../hooks/isLoggedIn';
 
 
-const RegisterSite =({changeLoggedIn}) => {
+const RegisterSite =() => {
   const navigate = useNavigate();
-  const [userNameReg, setUserNameReg] = useState('');
-  const [passwordReg, setPasswordReg] = useState('');
-  
 
-  useEffect(() => {
-    document.documentElement.classList.add('html-menu')
-    return () => {
-        document.documentElement.classList.remove('html-menu')
-    }
-  }, [])
-
-  useEffect(() => {
-  const bearer = localStorage.getItem('jwt')
-  if(bearer !== null){
-    navigate('/main')
-  }
-  }, [])
-
+  //Check if user is logged in
+  useLoggedIn()
 
   //Logica submit register
   const handleSubmitReg = async event => {
     event.preventDefault();
 
-    console.log(userNameReg, passwordReg)
+    //Otra forma de hacerlo
+    const { user, pass } = Object.fromEntries(new window.FormData(event.target))
 
     const requestOptionsReg = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: userNameReg, password: passwordReg})
+      body: JSON.stringify({ email: user, password: pass})
     }
 
     const response = await fetch('./register', requestOptionsReg)
 
     if (response.status >= 300){
+      //TODO handle error
       console.log("Error")
     } else if (response.status === 201){
-      //localStorage.setItem('jwt', `Bearer ${response.text()}`)
       navigate('/login')
     }
   }
@@ -60,11 +47,11 @@ const RegisterSite =({changeLoggedIn}) => {
               <span>SIGN UP</span>
             </div>
             <LoginInput word={"User"} id='login-input' />
-            <LoginInput word={"Email"} id='email-input' func={setUserNameReg}/>
-            <PasswordInput id='password-input' func={setPasswordReg}/>
+            <LoginInput word={"Email"} id='email-input'/>
+            <PasswordInput id='password-input'/>
             <br />
             <div className='lgn-btns'>
-              <LoginButton word={"Login"} username={userNameReg} route={"login"}/>
+              <LoginButton word={"Back"} route={"login"}/>
               <LoginButton word={"Register"} />
             </div>
         </div>

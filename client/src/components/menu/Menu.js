@@ -17,7 +17,7 @@ const  Menu = ({changeLoggedIn}) => {
             <ul>
             <li><a href="#">HOME</a></li>
             <li><a href="#" onClick={()=> { navigate('/gallery') } }>PROJECTS</a></li>
-            <li><a href="#">TAGS</a></li>
+            <li><a href="#" onClick={()=> { navigate('/models') } }>MODELS</a></li>
             <li><a href="#">CATEGORIES</a></li>
             <li><a href="#" onClick={()=> {
               localStorage.removeItem('jwt')

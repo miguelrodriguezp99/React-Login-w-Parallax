@@ -3,26 +3,15 @@ import '../../styles/login-input.css'
 
 //Hacemos que sea una funcion que recibe un parametro word
 
-function LoginInput({word, id, func}) {
+function LoginInput({word, id, inputRef}) {
     
-    if(func === undefined){
       return (
         <div className="form__group field">
-        <input id={id} type="input" className="form__field" placeholder="Name" 
-         />
-        <label htmlFor="name" className="form__label">{word}</label>
-      </div>
-      )}
-      else{
-        return (
-          <div className="form__group field">
-            <input id={id} type="input" className="form__field" placeholder="Name" 
-            onChange={e => func(e.target.value)}
-             />
-            <label htmlFor="name" className="form__label">{word}</label>
-          </div>
-        )
-      }
+          <input name='username' id={id} type="input" className="form__field" placeholder="Name" />
+          <label htmlFor="name" className="form__label">{word}</label>
+        </div>
+      )
+      
     
 }   
 
