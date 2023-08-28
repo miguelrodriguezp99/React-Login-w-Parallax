@@ -1,22 +1,38 @@
-export async function fetchLoggin(event, changeLoggedIn){
-    
+import { useContext } from "react";
+import { LogginContext } from "../context/loggin";
+import {useNavigate} from 'react-router-dom';
+
+async function performLogin(user, pass) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: user, password: pass })
+  };
+
+  const response = await fetch('./login', requestOptions);
+  return response;
+}
+
+export function useLogin() {
+  const { setLoggin } = useContext(LogginContext);
+  const navigate = useNavigate();
+
+  async function login(event) {
+    event.preventDefault();
     const fields = new window.FormData(event.target);
-    const user = fields.get('username')
-    const pass = fields.get('password')
+    const user = fields.get('username');
+    const pass = fields.get('password');
 
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: user, password: pass })
-    };
+    const response = await performLogin(user, pass);
 
-    const response = await fetch('./login', requestOptions)
-
-    if (response.status >= 300){
-      console.log("Error")
-    } else if (response.status === 200){
-      localStorage.setItem('jwt', `Bearer ${response.text()}`)
-      changeLoggedIn(true)
+    if (response.status >= 300) {
+      setLoggin(false);
+    } else {
+      localStorage.setItem('jwt', `Bearer ${await response.text()}`);
+      navigate('/mainsite');
+      setLoggin(true);
     }
-  
+  }
+
+  return login;
 }
