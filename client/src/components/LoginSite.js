@@ -5,7 +5,7 @@ import ParallaxStars from './menu/ParallaxStars';
 import { useLoggedIn } from '../hooks/isLoggedIn';
 import LoginForm from '../components/login_register/LoginForm'
 
-const LoginSite =({changeLoggedIn}) => {
+const LoginSite =() => {
   
   //Check if user is logged in (CUSTOM HOOK)
   useLoggedIn();
@@ -13,7 +13,7 @@ const LoginSite =({changeLoggedIn}) => {
   return (
       <>
         <ParallaxStars /> 
-        <LoginForm changeLoggedIn={changeLoggedIn}/>
+        <LoginForm/>
       </>
     );
 };

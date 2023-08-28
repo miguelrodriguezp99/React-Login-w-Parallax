@@ -4,12 +4,13 @@ import React from 'react'
 import LoginInput from '../inputs/LoginInput';
 import PasswordInput from '../inputs/PasswordInput';
 import LoginButton from '../buttons/LoginButton';
-import {fetchLoggin} from '../../services/fetchLoggin'
+import {useLogin} from '../../services/fetchLoggin'
 
-const LoginForm =({changeLoggedIn}) => {
+const LoginForm =() => {
+  const login = useLogin();
   return (
       <>
-        <form onSubmit={(event) => {fetchLoggin(event, changeLoggedIn)}}>
+        <form onSubmit={(event) => {login(event)}}>
         <div className='login-container'>
             <div className='lgn-text'>
               <span>LOGIN</span>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { LogginProvider } from './context/loggin';
 
 
 
@@ -10,11 +11,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  
     <React.StrictMode>
+      <LogginProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/*" element={<App />}/>
           </Routes>
         </BrowserRouter>
+      </LogginProvider>
     </React.StrictMode>
 
 );

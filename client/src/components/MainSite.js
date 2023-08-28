@@ -1,15 +1,15 @@
-import {useNavigate} from 'react-router-dom';
+
 import React from 'react'
 import Menu from './menu/Menu'
 import ParallaxStars from './menu/ParallaxStars';
 
-const MainSite =({changeLoggedIn}) => {
+const MainSite =() => {
 
   return (
     <>
       <ParallaxStars />
       <div className='menu-container'>
-          <Menu changeLoggedIn={changeLoggedIn}/>
+          <Menu/>
       </div>
 
     </>

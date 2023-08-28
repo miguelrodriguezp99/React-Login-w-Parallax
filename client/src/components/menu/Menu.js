@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 import '../../styles/menu.css'
+import { LogginContext } from "../../context/loggin";
 
-const  Menu = ({changeLoggedIn}) => {
+const  Menu = () => {
     const navigate = useNavigate();
+    const {setLoggin} = useContext(LogginContext);
 
     useEffect(() => {
         document.body.classList.add('menu-body')
@@ -21,7 +23,7 @@ const  Menu = ({changeLoggedIn}) => {
             <li><a href="#">CATEGORIES</a></li>
             <li><a href="#" onClick={()=> {
               localStorage.removeItem('jwt')
-              changeLoggedIn(false)
+              setLoggin(false)
               navigate('/login')
               } }>LOG OUT</a></li>
             </ul>
